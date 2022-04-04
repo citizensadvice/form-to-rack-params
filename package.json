@@ -1,0 +1,62 @@
+{
+  "name": "form-to-rack-params",
+  "version": "1.0.0",
+  "description": "Convert form parameters to an object using the same logic as Rack",
+  "type": "module",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.12.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.3",
+    "jest": "^27.5.1",
+    "jest-environment-jsdom": "^27.5.1"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "browser": true
+    },
+    "parserOptions": {
+      "ecmaVersion": "latest"
+    },
+    "rules": {
+      "no-cond-assign": "off",
+      "no-param-reassign": [
+        "error",
+        {
+          "props": false
+        }
+      ],
+      "no-restricted-syntax": "off",
+      "object-curly-newline": "off"
+    },
+    "overrides": [
+      {
+        "files": [
+          "**/*.test.js"
+        ],
+        "env": {
+          "es6": true,
+          "jest": true
+        },
+        "plugins": [
+          "jest"
+        ]
+      }
+    ]
+  },
+  "jest": {
+    "transform": {},
+    "testEnvironment": "jsdom"
+  }
+}
