@@ -1,5 +1,5 @@
 {
-  "name": "form-to-rack-params",
+  "name": "@citizensadvice/form-to-rack-params",
   "version": "1.0.0",
   "description": "Convert form parameters to an object using the same logic as Rack",
   "type": "module",
@@ -10,8 +10,7 @@
     "lint": "eslint .",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
-  "keywords": [],
-  "author": "",
+  "author": "Daniel Lewis",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.12.0",
