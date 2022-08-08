@@ -91,7 +91,7 @@ function normalizeParams(params, name, v, depth) {
 }
 
 export default function formToRackParams(form) {
-  const data = new FormData(form);
+  const data = form instanceof FormData ? form : new FormData(form);
   const serialized = Object.create(null);
 
   for (const [key, value] of data) {

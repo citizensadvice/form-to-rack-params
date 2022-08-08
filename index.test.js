@@ -138,3 +138,13 @@ describe('x[y]=1&x[y][][w]=2', () => {
     }).toThrow('expected Array (got string) for param `y`');
   });
 });
+
+describe('with a formData object', () => {
+  it('is converted to params', () => {
+    makeDOM('x=1');
+    const formData = new FormData(document.querySelector('form'));
+    expect(serializeForm(formData)).toEqual({
+      x: '1',
+    });
+  });
+});
