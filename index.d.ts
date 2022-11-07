@@ -1,1 +1,2 @@
-export declare function formToRackParams(value: HTMLFormElement | FormData): {};
+declare function formToRackParams(value: HTMLFormElement | FormData): {};
+export default formToRackParams;
