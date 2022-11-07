@@ -1,8 +1,8 @@
-# `formToRackParams(form: HTMLFormElement): Object`
+# `formToRackParams(form: HTMLFormElement | FormData): Object`
 
 Converts a `<Form>`'s parameters to an object using the same logic as [Rack](https://github.com/rack/rack).
 
-This is mostly intended for testing JavaScript components that generate HTML forms to be submitted to Rails.
+This is mainly intended for testing JavaScript components that generate HTML forms to be submitted to Rails.
 
 ```html
 <form>

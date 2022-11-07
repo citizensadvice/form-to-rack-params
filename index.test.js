@@ -1,4 +1,4 @@
-import serializeForm from '.';
+import formToRackParams from '.';
 
 beforeEach(() => {
   document.body.replaceChildren();
@@ -67,7 +67,7 @@ describe.each([
   it('is converted to params', () => {
     makeDOM(query);
     const form = document.querySelector('form');
-    expect(serializeForm(form)).toEqual(expected);
+    expect(formToRackParams(form)).toEqual(expected);
   });
 });
 
@@ -79,7 +79,7 @@ describe('foo[__proto__][x]=1', () => {
     const ob = Object.create(null);
     ob.__proto__ = { x: '1' }; // eslint-disable-line no-proto
 
-    expect(serializeForm(form)).toEqual({ foo: ob });
+    expect(formToRackParams(form)).toEqual({ foo: ob });
   });
 });
 
@@ -92,7 +92,7 @@ describe('foo[][__proto__][x]=1', () => {
     const ob = Object.create(null);
     ob.__proto__ = { x: '1' }; // eslint-disable-line no-proto
 
-    expect(serializeForm(form)).toEqual({ foo: [ob] });
+    expect(formToRackParams(form)).toEqual({ foo: [ob] });
   });
 });
 
@@ -105,7 +105,7 @@ describe('__proto__[x]=1', () => {
     const ob = Object.create(null);
     ob.__proto__ = { x: '1' }; // eslint-disable-line no-proto
 
-    expect(serializeForm(form)).toEqual(ob);
+    expect(formToRackParams(form)).toEqual(ob);
   });
 });
 
@@ -114,7 +114,7 @@ describe('x[y]=1&x[y]z=2', () => {
     makeDOM('x[y]=1&x[y]z=2');
     const form = document.querySelector('form');
     expect(() => {
-      serializeForm(form);
+      formToRackParams(form);
     }).toThrow('expected Hash (got String) for param `y`');
   });
 });
@@ -124,7 +124,7 @@ describe('x[y]=1&x[]=1', () => {
     makeDOM('x[y]=1&x[]=1');
     const form = document.querySelector('form');
     expect(() => {
-      serializeForm(form);
+      formToRackParams(form);
     }).toThrow('expected Array (got object) for param `x`');
   });
 });
@@ -134,7 +134,7 @@ describe('x[y]=1&x[y][][w]=2', () => {
     makeDOM('x[y]=1&x[y][][w]=2');
     const form = document.querySelector('form');
     expect(() => {
-      serializeForm(form);
+      formToRackParams(form);
     }).toThrow('expected Array (got string) for param `y`');
   });
 });
@@ -143,7 +143,7 @@ describe('with a formData object', () => {
   it('is converted to params', () => {
     makeDOM('x=1');
     const formData = new FormData(document.querySelector('form'));
-    expect(serializeForm(formData)).toEqual({
+    expect(formToRackParams(formData)).toEqual({
       x: '1',
     });
   });
