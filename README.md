@@ -1,5 +1,7 @@
 # `formToRackParams(form: HTMLFormElement | FormData): Object`
 
+[![npm version](https://badge.fury.io/js/@citizensadvice%2Fform-to-rack-params.svg)](https://badge.fury.io/js/@citizensadvice%2Fform-to-rack-params)
+
 Converts a `<Form>`'s parameters to an object using the same logic as [Rack](https://github.com/rack/rack).
 
 This is mainly intended for testing JavaScript components that generate HTML forms to be submitted to Rails.
