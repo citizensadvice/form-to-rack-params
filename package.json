@@ -1,6 +1,6 @@
 {
   "name": "@citizensadvice/form-to-rack-params",
-  "version": "1.2.0-rc.2",
+  "version": "1.2.0",
   "description": "Convert form parameters to an object using the same logic as Rack",
   "type": "module",
   "main": "index.js",
