@@ -24,7 +24,10 @@ describe.each([
   ['foo=bar&foo=quux', { foo: 'quux' }],
   ['foo=1&bar=2', { foo: '1', bar: '2' }],
   ['foo=bar&baz=', { foo: 'bar', baz: '' }],
-  ['my+weird+field=q1%212%22%27w%245%267%2Fz8%29%3F', { 'my weird field': 'q1!2"\'w$5&7/z8)?' }],
+  [
+    'my+weird+field=q1%212%22%27w%245%267%2Fz8%29%3F',
+    { 'my weird field': 'q1!2"\'w$5&7/z8)?' },
+  ],
   ['a=b&pid%3D1234=1023', { 'pid=1234': '1023', a: 'b' }],
   ['foo[]=', { foo: [''] }],
   ['foo[]=bar', { foo: ['bar'] }],
@@ -43,10 +46,39 @@ describe.each([
   ['x[y][][v][w]=1', { x: { y: [{ v: { w: '1' } }] } }],
   ['x[y][][z]=1&x[y][][v][w]=2', { x: { y: [{ z: '1', v: { w: '2' } }] } }],
   ['x[y][][z]=1&x[y][][z]=2', { x: { y: [{ z: '1' }, { z: '2' }] } }],
-  ['x[y][][z]=1&x[y][][w]=a&x[y][][z]=2&x[y][][w]=3', { x: { y: [{ z: '1', w: 'a' }, { z: '2', w: '3' }] } }],
-  ['x[][y]=1&x[][z][w]=a&x[][y]=2&x[][z][w]=b', { x: [{ y: '1', z: { w: 'a' } }, { y: '2', z: { w: 'b' } }] }],
-  ['x[][z][w]=a&x[][y]=1&x[][z][w]=b&x[][y]=2', { x: [{ y: '1', z: { w: 'a' } }, { y: '2', z: { w: 'b' } }] }],
-  ['data[books][][data][page]=1&data[books][][data][page]=2', { data: { books: [{ data: { page: '1' } }, { data: { page: '2' } }] } }],
+  [
+    'x[y][][z]=1&x[y][][w]=a&x[y][][z]=2&x[y][][w]=3',
+    {
+      x: {
+        y: [
+          { z: '1', w: 'a' },
+          { z: '2', w: '3' },
+        ],
+      },
+    },
+  ],
+  [
+    'x[][y]=1&x[][z][w]=a&x[][y]=2&x[][z][w]=b',
+    {
+      x: [
+        { y: '1', z: { w: 'a' } },
+        { y: '2', z: { w: 'b' } },
+      ],
+    },
+  ],
+  [
+    'x[][z][w]=a&x[][y]=1&x[][z][w]=b&x[][y]=2',
+    {
+      x: [
+        { y: '1', z: { w: 'a' } },
+        { y: '2', z: { w: 'b' } },
+      ],
+    },
+  ],
+  [
+    'data[books][][data][page]=1&data[books][][data][page]=2',
+    { data: { books: [{ data: { page: '1' } }, { data: { page: '2' } }] } },
+  ],
   ['x[][y][][z]=1&x[][y][][w]=2', { x: [{ y: [{ z: '1', w: '2' }] }] }],
   [
     'x[][id]=1&x[][y][a]=5&x[][y][b]=7&x[][z][id]=3&x[][z][w]=0&x[][id]=2&x[][y][a]=6&x[][y][b]=8&x[][z][id]=4&x[][z][w]=0',
@@ -58,7 +90,10 @@ describe.each([
     },
   ],
   ['[]=1&[a]=2&b[=3&c]=4', { '[]': '1', '[a]': '2', 'b[': '3', 'c]': '4' }],
-  ['d[[]=5&e][]=6&f[[]]=7', { d: { '[': '5' }, 'e]': ['6'], f: { '[': { ']': '7' } } }],
+  [
+    'd[[]=5&e][]=6&f[[]]=7',
+    { d: { '[': '5' }, 'e]': ['6'], f: { '[': { ']': '7' } } },
+  ],
   ['g[h]i=8&j[k]l[m]=9', { g: { h: { i: '8' } }, j: { k: { 'l[m]': '9' } } }],
   ['l[[[[[[[[]]]]]]]=10', { l: { '[[[[[[[': { ']]]]]]': '10' } } }],
   ['[foo]=1', { '[foo]': '1' }],
@@ -77,7 +112,7 @@ describe('foo[__proto__][x]=1', () => {
     const form = document.querySelector('form');
 
     const ob = Object.create(null);
-    ob.__proto__ = { x: '1' }; // eslint-disable-line no-proto
+    ob.__proto__ = { x: '1' };
 
     expect(formToRackParams(form)).toEqual({ foo: ob });
   });
@@ -90,7 +125,7 @@ describe('foo[][__proto__][x]=1', () => {
     const form = document.querySelector('form');
 
     const ob = Object.create(null);
-    ob.__proto__ = { x: '1' }; // eslint-disable-line no-proto
+    ob.__proto__ = { x: '1' };
 
     expect(formToRackParams(form)).toEqual({ foo: [ob] });
   });
@@ -103,7 +138,7 @@ describe('__proto__[x]=1', () => {
     const form = document.querySelector('form');
 
     const ob = Object.create(null);
-    ob.__proto__ = { x: '1' }; // eslint-disable-line no-proto
+    ob.__proto__ = { x: '1' };
 
     expect(formToRackParams(form)).toEqual(ob);
   });

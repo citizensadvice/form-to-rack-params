@@ -63,7 +63,9 @@ function normalizeParams(params, name, v, depth) {
   } else if (after === '[]') {
     params[k] ||= [];
     if (!Array.isArray(params[k])) {
-      throw new Error(`expected Array (got ${typeof params[k]}) for param \`${k}\``);
+      throw new Error(
+        `expected Array (got ${typeof params[k]}) for param \`${k}\``,
+      );
     }
     params[k].push(v);
   } else if (after.startsWith('[]')) {
@@ -71,18 +73,24 @@ function normalizeParams(params, name, v, depth) {
     const childKey = after.slice(2, after.length);
     params[k] ||= [];
     if (!Array.isArray(params[k])) {
-      throw new Error(`expected Array (got ${typeof params[k]}) for param \`${k}\``);
+      throw new Error(
+        `expected Array (got ${typeof params[k]}) for param \`${k}\``,
+      );
     }
     const last = params[k][params[k].length - 1];
     if (typeof last === 'object' && !paramsHashHasKey(last, childKey)) {
       normalizeParams(last, childKey, v, depth + 1);
     } else {
-      params[k].push(normalizeParams(Object.create(null), childKey, v, depth + 1));
+      params[k].push(
+        normalizeParams(Object.create(null), childKey, v, depth + 1),
+      );
     }
   } else {
     params[k] ||= Object.create(null);
     if (typeof params[k] !== 'object') {
-      throw new Error(`expected Hash (got ${params[k].constructor?.name}) for param \`${k}\``);
+      throw new Error(
+        `expected Hash (got ${params[k].constructor?.name}) for param \`${k}\``,
+      );
     }
     params[k] = normalizeParams(params[k], after, v, depth + 1);
   }

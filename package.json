@@ -9,57 +9,28 @@
     "index.d.ts"
   ],
   "scripts": {
-    "lint": "eslint .",
+    "format": "prettier . --write",
+    "lint:format": "prettier . --check",
+    "lint:js": "eslint . --max-warnings=0",
+    "lint": "npm run lint:format && npm run lint:js",
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "preversion": "npm run lint"
   },
   "author": "github@mrdaniellewis.co.uk",
   "license": "ISC",
   "devDependencies": {
-    "eslint": "^8.27.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jest": "^27.1.4",
-    "jest": "^29.2.2",
-    "jest-environment-jsdom": "^29.2.2"
+    "@eslint-community/eslint-plugin-eslint-comments": "^4.4.1",
+    "eslint": "^9.14.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-jest": "^28.9.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "prettier": "^3.3.3"
   },
-  "eslintConfig": {
-    "extends": "airbnb-base",
-    "env": {
-      "browser": true
-    },
-    "parserOptions": {
-      "ecmaVersion": "latest"
-    },
-    "rules": {
-      "no-cond-assign": "off",
-      "no-param-reassign": [
-        "error",
-        {
-          "props": false
-        }
-      ],
-      "no-restricted-syntax": "off",
-      "object-curly-newline": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "**/*.test.js"
-        ],
-        "env": {
-          "es6": true,
-          "jest": true
-        },
-        "plugins": [
-          "jest"
-        ]
-      }
-    ]
-  },
-  "jest": {
-    "transform": {},
-    "testEnvironment": "jsdom"
+  "prettier": {
+    "singleAttributePerLine": true,
+    "singleQuote": true
   },
   "np": {
     "yarn": false
