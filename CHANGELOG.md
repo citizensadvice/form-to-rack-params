@@ -9,6 +9,6 @@
 
 - Allows passing an existing `FormData` object
 
-## [v1.0.0] 
+## [v1.0.0]
 
 - Initial release

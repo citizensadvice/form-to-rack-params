@@ -8,8 +8,16 @@ This is mainly intended for testing JavaScript components that generate HTML for
 
 ```html
 <form>
-  <input type="hidden" name="foo[bar][][id]" value="1" />
-  <input type="hidden" name="foo[bar][][id]" value="2" />
+  <input
+    type="hidden"
+    name="foo[bar][][id]"
+    value="1"
+  />
+  <input
+    type="hidden"
+    name="foo[bar][][id]"
+    value="2"
+  />
 </form>
 ```
 
